@@ -11,6 +11,5 @@ var SAMPLE_SERVER_BASE_URL = "https://altruli.herokuapp.com";
 // For test purposes, you can obtain these from https://tokbox.com/account.
 
 var API_KEY = "";
-var SESSION_ID =
-  "2_MX40NjA2NzQ4Mn5-MTUxOTY2OTAxNjk4NX5XOFpIVkV0d2o1RGthK01hWEJwenV0eUV-fg";
+var SESSION_ID = "";
 var TOKEN = "";

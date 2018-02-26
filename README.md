@@ -1,6 +1,7 @@
 # Demo web app for OpenTok (Nay)
+Use Chrome Browser for better compatability.
 
-This sample application shows how to connect to an OpenTok session, publish a stream,
+This demo application shows how to connect to an OpenTok session, publish a stream,
 subscribe to a stream, and mute audio.
 
 ## Demo

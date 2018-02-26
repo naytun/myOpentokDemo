@@ -1,5 +1,4 @@
-OpenTok.js Basic Sample
-=======================
+# Demo web app for OpenTok (Nay)
 
 This sample application shows how to connect to an OpenTok session, publish a stream,
 subscribe to a stream, and mute audio.
@@ -12,7 +11,7 @@ You can see a demo of this sample running at [opentok.github.io/opentok-web-samp
 
 ## Running the App
 
-*Important:* Read the following sections of the main README file for the repository to set up
+_Important:_ Read the following sections of the main README file for the repository to set up
 and test the application:
 
 * [Setting up the test web service](../README.md#setting-up-the-test-web-service)
@@ -29,7 +28,7 @@ the session. Think of a session as a room, in which clients meet. Depending on t
 your application, you will either reuse the same session (and session ID) repeatedly or generate
 new session IDs for new groups of clients.
 
-*Important*: This demo application assumes that only two clients -- the local Web client and
+_Important_: This demo application assumes that only two clients -- the local Web client and
 another client -- will connect in the same OpenTok session. For test purposes, you can reuse the
 same session ID each time two clients connect. However, in a production application, your
 server-side code must create a unique session ID for each pair of clients. In other applications,
@@ -64,18 +63,23 @@ if (API_KEY && TOKEN && SESSION_ID) {
   initializeSession();
 } else if (SAMPLE_SERVER_BASE_URL) {
   // Make an Ajax request to get the OpenTok API key, session ID, and token from the server
-  fetch(SAMPLE_SERVER_BASE_URL + '/session').then(function(res) {
-    return res.json();
-  }).then(function(json) {
-    apiKey = json.apiKey;
-    sessionId = json.sessionId;
-    token = json.token;
+  fetch(SAMPLE_SERVER_BASE_URL + "/session")
+    .then(function(res) {
+      return res.json();
+    })
+    .then(function(json) {
+      apiKey = json.apiKey;
+      sessionId = json.sessionId;
+      token = json.token;
 
-    initializeSession();
-  }).catch(function(error) {
-    handleError(error);
-    alert('Failed to get opentok sessionId and token. Make sure you have updated the config.js file.');
-  });
+      initializeSession();
+    })
+    .catch(function(error) {
+      handleError(error);
+      alert(
+        "Failed to get opentok sessionId and token. Make sure you have updated the config.js file."
+      );
+    });
 }
 ```
 
@@ -98,8 +102,8 @@ Upon obtaining the session ID, token, and API, the app calls the `initializeSess
 First, this method initializes a Session object:
 
 ```javascript
-    // Initialize Session Object
-    var session = OT.initSession(apiKey, sessionId);
+// Initialize Session Object
+var session = OT.initSession(apiKey, sessionId);
 ```
 
 The `OT.initSession()` method takes two parameters -- the OpenTok API key and the session ID. It
@@ -111,31 +115,44 @@ interacting with the session in any way). The `connect()` method takes two param
 and a completion handler function:
 
 ```javascript
-    // Connect to the Session
-    session.connect(token, function(error) {
-
-      // If the connection is successful, initialize a publisher and publish to the session
-      if (!error) {
-        var publisherOptions = {
-          insertMode: 'append',
-          width: '100%',
-          height: '100%'
-        };
-        var publisher = OT.initPublisher('publisher', publisherOptions, function(error) {
-          if (error) {
-            console.log('There was an error initilizing the publisher: ', error.name, error.message);
-            return;
-          }
-          session.publish(publisher, function(error) {
-            if (error) {
-              console.log('There was an error publishing: ', error.name, error.message);
-            }
-          });
-        });
-      } else {
-        console.log('There was an error connecting to the session:', error.name, error.message);
+// Connect to the Session
+session.connect(token, function(error) {
+  // If the connection is successful, initialize a publisher and publish to the session
+  if (!error) {
+    var publisherOptions = {
+      insertMode: "append",
+      width: "100%",
+      height: "100%"
+    };
+    var publisher = OT.initPublisher("publisher", publisherOptions, function(
+      error
+    ) {
+      if (error) {
+        console.log(
+          "There was an error initilizing the publisher: ",
+          error.name,
+          error.message
+        );
+        return;
       }
+      session.publish(publisher, function(error) {
+        if (error) {
+          console.log(
+            "There was an error publishing: ",
+            error.name,
+            error.message
+          );
+        }
+      });
     });
+  } else {
+    console.log(
+      "There was an error connecting to the session:",
+      error.name,
+      error.message
+    );
+  }
+});
 ```
 
 An error object is passed into the completion handler of the `Session.connect()` method if the
@@ -146,9 +163,9 @@ The Session object dispatches a `sessionDisconnected` event when your client dis
 session. The application defines an event handler for this event:
 
 ```javascript
-    session.on('sessionDisconnected', function(event) {
-      console.log('You were disconnected from the session.', event.reason);
-    });
+session.on("sessionDisconnected", function(event) {
+  console.log("You were disconnected from the session.", event.reason);
+});
 ```
 
 ## Publishing an audio video stream to the session
@@ -167,18 +184,24 @@ optional parameters:
 
 ```javascript
 var publisherOptions = {
-  insertMode: 'append',
-  width: '100%',
-  height: '100%'
+  insertMode: "append",
+  width: "100%",
+  height: "100%"
 };
-var publisher = OT.initPublisher('publisher', publisherOptions, function(error) {
+var publisher = OT.initPublisher("publisher", publisherOptions, function(
+  error
+) {
   if (error) {
-    console.log('There was an error initializing the publisher: ', error.name, error.message);
+    console.log(
+      "There was an error initializing the publisher: ",
+      error.name,
+      error.message
+    );
     return;
   }
   session.publish(publisher, function(error) {
     if (error) {
-      console.log('There was an error publishing: ', error.name, error.message);
+      console.log("There was an error publishing: ", error.name, error.message);
     }
   });
 });
@@ -188,7 +211,7 @@ Once the Publisher object is initialized, we publish to the session using the `p
 method of the Session object:
 
 ```javascript
-    session.publish(publisher);
+session.publish(publisher);
 ```
 
 ## Subscribing to another client's audio-video stream
@@ -202,19 +225,21 @@ representing stream that was created. The application adds an event listener for
 `Session.subscribe()` method:
 
 ```javascript
-    // Subscribe to a newly created stream
-    session.on('streamCreated', function(event) {
-      var subscriberOptions = {
-        insertMode: 'append',
-        width: '100%',
-        height: '100%'
-      };
-      session.subscribe(event.stream, 'subscriber', subscriberOptions, function(error) {
-        if (error) {
-          console.log('There was an error publishing: ', error.name, error.message);
-        }
-      });
-    });
+// Subscribe to a newly created stream
+session.on("streamCreated", function(event) {
+  var subscriberOptions = {
+    insertMode: "append",
+    width: "100%",
+    height: "100%"
+  };
+  session.subscribe(event.stream, "subscriber", subscriberOptions, function(
+    error
+  ) {
+    if (error) {
+      console.log("There was an error publishing: ", error.name, error.message);
+    }
+  });
+});
 ```
 
 The `Session.subscribe()` method takes four parameters:

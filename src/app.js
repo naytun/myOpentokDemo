@@ -65,8 +65,10 @@ if (API_KEY && TOKEN && SESSION_ID) {
     })
     .then(function fetchJson(json) {
       apiKey = json.apiKey;
-      sessionId = json.sessionId;
-      token = json.token;
+      //sessionId = json.sessionId;
+      //token = json.token;
+    sessionid= "2_MX40NjA2NzQ4Mn5-MTUxOTc0MzcxMzIxMH5kdER1cVVOUXlpUGNSWDBsZmg2QXNqSS9-UH4";
+    token = "T1==cGFydG5lcl9pZD00NjA2NzQ4MiZzaWc9Y2MwZTA0NWNlZGMyODU5ZDQ3NThlNDU5NzE2NDJmMTBhNTdkYzExZDpzZXNzaW9uX2lkPTJfTVg0ME5qQTJOelE0TW41LU1UVXhPVGMwTXpjeE16SXhNSDVrZEVSMWNWVk9VWGxwVUdOU1dEQnNabWcyUVhOcVNTOS1VSDQmY3JlYXRlX3RpbWU9MTUxOTc0NDIxMiZub25jZT0wLjAxODE0MjA4MDc3NzExODg3NCZyb2xlPXN1YnNjcmliZXImZXhwaXJlX3RpbWU9MTUyMjMzMjYxMiZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
 
       initializeSession();
     })

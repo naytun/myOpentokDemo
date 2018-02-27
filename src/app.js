@@ -53,12 +53,9 @@ function initializeSession() {
 
 // See the config.js file.
 if (API_KEY && TOKEN && SESSION_ID) {
-//   apiKey = API_KEY;
-//   sessionId = SESSION_ID;
-//   token = TOKEN;
-    apiKey= "46067482";
-    sessionid= "2_MX40NjA2NzQ4Mn5-MTUxOTc0MzcxMzIxMH5kdER1cVVOUXlpUGNSWDBsZmg2QXNqSS9-UH4";
-    token = "T1==cGFydG5lcl9pZD00NjA2NzQ4MiZzaWc9Y2MwZTA0NWNlZGMyODU5ZDQ3NThlNDU5NzE2NDJmMTBhNTdkYzExZDpzZXNzaW9uX2lkPTJfTVg0ME5qQTJOelE0TW41LU1UVXhPVGMwTXpjeE16SXhNSDVrZEVSMWNWVk9VWGxwVUdOU1dEQnNabWcyUVhOcVNTOS1VSDQmY3JlYXRlX3RpbWU9MTUxOTc0NDIxMiZub25jZT0wLjAxODE0MjA4MDc3NzExODg3NCZyb2xlPXN1YnNjcmliZXImZXhwaXJlX3RpbWU9MTUyMjMzMjYxMiZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
+  apiKey = API_KEY;
+  sessionId = SESSION_ID;
+  token = TOKEN;
   initializeSession();
 } else if (SAMPLE_SERVER_BASE_URL) {
   // Make an Ajax request to get the OpenTok API key, session ID, and token from the server
@@ -67,13 +64,9 @@ if (API_KEY && TOKEN && SESSION_ID) {
       return res.json();
     })
     .then(function fetchJson(json) {
-      //apiKey = json.apiKey;
-      //sessionId = json.sessionId;
-      //token = json.token;
-    apiKey= "46067482";
-    sessionid= "2_MX40NjA2NzQ4Mn5-MTUxOTc0MzcxMzIxMH5kdER1cVVOUXlpUGNSWDBsZmg2QXNqSS9-UH4";
-    token = "T1==cGFydG5lcl9pZD00NjA2NzQ4MiZzaWc9Y2MwZTA0NWNlZGMyODU5ZDQ3NThlNDU5NzE2NDJmMTBhNTdkYzExZDpzZXNzaW9uX2lkPTJfTVg0ME5qQTJOelE0TW41LU1UVXhPVGMwTXpjeE16SXhNSDVrZEVSMWNWVk9VWGxwVUdOU1dEQnNabWcyUVhOcVNTOS1VSDQmY3JlYXRlX3RpbWU9MTUxOTc0NDIxMiZub25jZT0wLjAxODE0MjA4MDc3NzExODg3NCZyb2xlPXN1YnNjcmliZXImZXhwaXJlX3RpbWU9MTUyMjMzMjYxMiZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
-
+      apiKey = json.apiKey;
+      sessionId = json.sessionId;
+      token = json.token;
       initializeSession();
     })
     .catch(function catchErr(error) {

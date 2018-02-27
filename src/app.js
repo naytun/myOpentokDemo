@@ -1,5 +1,3 @@
-/* global OT API_KEY TOKEN SESSION_ID SAMPLE_SERVER_BASE_URL */
-
 var apiKey;
 var sessionId;
 var token;
@@ -11,8 +9,10 @@ function handleError(error) {
 }
 
 function initializeSession() {
-  console.log(apiKey, sessionId, token);
   var session = OT.initSession(apiKey, sessionId);
+  console.log(apiKey);
+  console.log(sessionId);
+  console.log(token);
 
   // Subscribe to a newly created stream
   session.on("streamCreated", function streamCreated(event) {
@@ -59,7 +59,7 @@ if (API_KEY && TOKEN && SESSION_ID) {
   initializeSession();
 } else if (SAMPLE_SERVER_BASE_URL) {
   // Make an Ajax request to get the OpenTok API key, session ID, and token from the server
-  fetch(SAMPLE_SERVER_BASE_URL + "/room/session")
+  fetch(SAMPLE_SERVER_BASE_URL + "/session")
     .then(function fetch(res) {
       return res.json();
     })
